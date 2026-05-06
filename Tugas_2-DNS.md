@@ -71,8 +71,8 @@ Konfigurasi record pada zona domain `zeta.co.id`:
 
 | Tipe Record | Host / Nama | Value / Destination | Deskripsi |
 |-------------|-------------|---------------------|-----------|
-| **A Record** | `web` | `<IP_Tailscale_Anggota_2>` | Mengarahkan `web.zeta.co.id` ke Web Server |
-| **A Record** | `db` | `<IP_Tailscale_Anggota_3>` | Mengarahkan `db.zeta.co.id` ke Database Server |
+| **A Record** | `web` | `100.68.87.21` | Mengarahkan `web.zeta.co.id` ke Web Server |
+| **A Record** | `db` | `100.110.81.10` | Mengarahkan `db.zeta.co.id` ke Database Server |
 | **CNAME** | `www` | `web.zeta.co.id` | Alias domain web |
 | **NS** | `@` | `ns1.zeta.co.id` | Name Server otoritatif domain |
 | **SOA** | `@` | Default VestaCP | Informasi otoritas zona DNS |

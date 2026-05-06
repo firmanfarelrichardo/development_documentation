@@ -94,13 +94,13 @@ Pengujian dilakukan menggunakan tools:
 ### Command
 
 ```cmd
-nslookup web.zeta.co.id <IP_Tailscale_Anggota_1>
+nslookup web.zeta.co.id 100.124.206.35
 ```
 
 ### Expected Result
 
 ```cmd
-Address: <IP_Tailscale_Anggota_2>
+Address: 100.68.87.21
 ```
 
 Menunjukkan bahwa subdomain `web.zeta.co.id` berhasil dipetakan ke Web Server.
@@ -112,7 +112,7 @@ Menunjukkan bahwa subdomain `web.zeta.co.id` berhasil dipetakan ke Web Server.
 ### Command
 
 ```bash
-dig db.zeta.co.id @<IP_Tailscale_Anggota_1>
+dig db.zeta.co.id @100.124.206.35
 ```
 
 ### Expected Result
@@ -126,7 +126,7 @@ ANSWER SECTION
 akan muncul:
 
 ```bash
-db.zeta.co.id.   IN   A   <IP_Tailscale_Anggota_3>
+db.zeta.co.id.   IN   A   100.110.81.10
 ```
 
 Menunjukkan DNS berhasil memetakan Database Server dengan benar.

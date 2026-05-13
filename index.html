@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeta | Infrastruktur Digital Enterprise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIABEL CSS (MODERN LIGHT THEME) === */
+        :root {
+            --bg-main: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --accent-cyan: #4f46e5; /* Indigo untuk light mode */
+            --accent-cyan-glow: rgba(79, 70, 229, 0.3);
+            --accent-purple: #0ea5e9; /* Sky blue */
+            --border-color: #e2e8f0;
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Pola titik ala infrastruktur tech */
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: var(--font-heading);
+            letter-spacing: -0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--accent-cyan);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 4rem auto;
+            font-size: 1.15rem;
+        }
+
+        section {
+            padding: 7rem 0;
+            background: var(--bg-main);
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background-color: var(--accent-cyan);
+            box-shadow: 0 8px 25px var(--accent-cyan-glow);
+        }
+
+        .btn-secondary {
+            background-color: #fff;
+            border-color: var(--border-color);
+            color: var(--text-primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-3px);
+        }
+
+        /* === NAVBAR === */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-dot {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            padding-top: 14rem;
+            padding-bottom: 8rem;
+            text-align: center;
+            position: relative;
+            background: transparent; /* Allows dot pattern to show */
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--bg-main) 100%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 5rem;
+        }
+
+        .client-banner {
+            border-top: 1px solid var(--border-color);
+            padding-top: 3rem;
+            background: var(--bg-main);
+        }
+
+        .client-banner p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            filter: grayscale(100%) opacity(0.4);
+            transition: var(--transition);
+        }
+        
+        .client-logos:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .client-logos span {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* === STATS SECTION === */
+        .stats {
+            background-color: transparent;
+            padding: 0 0 6rem 0;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item { border-right: 1px solid var(--border-color); }
+        .stat-item:last-child { border-right: none; }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* === SERVICES (BENTO GRID) === */
+        .services-section {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, 0.3);
+            box-shadow: 0 20px 40px -20px var(--accent-cyan-glow);
+        }
+
+        .bento-large { grid-column: span 2; background: linear-gradient(135deg, #fff, #f8fafc); }
+        .bento-small { grid-column: span 1; }
+        .bento-wide { grid-column: span 3; display: flex; align-items: center; gap: 3rem; }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--bg-secondary), #f0f4ff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .service-icon svg {
+            color: var(--accent-cyan);
+            stroke-width: 2.5;
+        }
+
+        .bento-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* === PORTFOLIO SECTION === */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover {
+            background: #fff;
+            box-shadow: var(--card-shadow);
+            transform: translateY(-5px);
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-purple);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .portfolio-card p {
+            color: var(--text-secondary);
+        }
+
+        /* === TEAM SECTION === */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: var(--card-shadow);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f0f4ff, #fef3ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            transform: rotate(-5deg);
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .team-avatar svg {
+            color: var(--accent-cyan);
+            stroke-width: 2;
+        }
+
+        .team-card:hover .team-avatar {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .team-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* === TESTIMONIAL SECTION === */
+        .testimonial {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 5rem;
+            color: rgba(79, 70, 229, 0.1);
+            position: absolute;
+            top: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.5px;
+        }
+
+        .testimonial-author {
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* === CONTACT SECTION === */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .contact-info {
+            padding: 4rem;
+            background: var(--text-primary);
+            color: #fff;
+            position: relative;
+        }
+
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            bottom: -50px; right: -50px;
+            width: 250px; height: 250px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(40px);
+        }
+
+        .info-item { margin-bottom: 2.5rem; position: relative; z-index: 1;}
+        .info-item h4 { color: var(--accent-purple); font-size: 0.85rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;}
+        .info-item p { font-size: 1.1rem; font-weight: 500; color: #f8fafc; }
+
+        .contact-form { padding: 4rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-size: 0.9rem; font-weight: 600;}
+        .form-control {
+            width: 100%; padding: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color);
+            border-radius: 12px; color: var(--text-primary); font-family: var(--font-body); transition: var(--transition);
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); background: #fff;}
+        textarea.form-control { resize: vertical; min-height: 120px; }
+
+        /* === FOOTER === */
+        footer { padding: 3rem 0; text-align: center; border-top: 1px solid var(--border-color); background: #fff;}
+        .footer-content { display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;}
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a:hover { color: var(--accent-cyan); }
+
+        /* === JS ANIMATION CLASSES === */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Menu Toggle for Mobile */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 1001; }
+        .menu-toggle .bar { width: 25px; height: 3px; background-color: var(--text-primary); transition: var(--transition); border-radius: 3px; }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .bento-large, .bento-small, .bento-wide { grid-column: span 3; }
+            .bento-wide { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+            .stat-item { border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .team-grid, .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .nav-links { 
+                position: absolute; top: 100%; left: -100%; width: 100%; flex-direction: column;
+                background: #fff; padding: 2rem 0; text-align: center; border-bottom: 1px solid var(--border-color);
+                transition: var(--transition); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links a { display: block; padding: 1rem; }
+            .hero { padding-top: 10rem; padding-bottom: 4rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-btns { flex-direction: column; }
+            .client-logos { flex-wrap: wrap; gap: 1.5rem; }
+            .team-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .contact-info, .contact-form { padding: 2rem; }
+            .footer-content { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo"><span class="logo-dot"></span> ZETA</a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#portfolio">Portofolio</a></li>
+                <li><a href="#team">Tim</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary" style="padding: 0.5rem 1rem;">Client Portal</a>
+            
+            <!-- Hamburger Icon untuk Mobile -->
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero container reveal">
+        <span class="pill">Generasi Baru Infrastruktur Digital</span>
+        <h1>Kinerja Maksimal.<br>Tanpa Kompromi.</h1>
+        <p>Arsitektur server, jaringan Anycast, dan basis data terdistribusi yang dirancang untuk stabilitas tingkat enterprise dan kecepatan instan.</p>
+        <div class="hero-btns">
+            <a href="#contact" class="btn btn-primary">Mulai Migrasi Server</a>
+            <a href="#services" class="btn btn-secondary">Pelajari Arsitektur</a>
+        </div>
+        
+        <div class="client-banner">
+            <p>Infrastruktur inti untuk perusahaan modern</p>
+            <div class="client-logos">
+                <span>TECHNOVA</span>
+                <span>NEXACORP</span>
+                <span>GLOBALNET</span>
+                <span>FINSECURE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats reveal">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <h3 class="counter" data-target="99.99" data-suffix="%">0</h3>
+                <p>Uptime Terjamin</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="counter" data-target="10" data-suffix="M+">0</h3>
+                <p>Request Diproses/Hari</p>
+            </div>
+            <div class="stat-item">
+                <h3>0</h3>
+                <p>Insiden Kebocoran Data</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services-section reveal">
+        <div class="container">
+            <span class="pill">Layanan Inti</span>
+            <h2 class="section-title" style="text-align: left; margin-bottom: 3rem;">Fondasi Ekosistem Anda.</h2>
+            
+            <div class="bento-grid">
+                <!-- Service 1 (Large) -->
+                <div class="bento-card bento-large">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3>Web Server Management</h3>
+                    <p>Konfigurasi Nginx/Apache tingkat lanjut dengan arsitektur High Availability. Server yang mampu beradaptasi dengan lonjakan trafik otomatis (Auto-Scaling) memastikan website atau aplikasi Anda tetap online di momen paling krusial.</p>
+                </div>
+                <!-- Service 2 (Small) -->
+                <div class="bento-card bento-small">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                    </div>
+                    <h3>DNS & Routing</h3>
+                    <p>Resolusi domain global super cepat. Jaringan Anycast kami merutekan pengguna ke server terdekat dan memangkas latensi.</p>
+                </div>
+                <!-- Service 3 (Wide) -->
+                <div class="bento-card bento-wide">
+                    <div class="service-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                            <line x1="6" y1="6" x2="18" y2="6"/>
+                            <line x1="6" y1="12" x2="18" y2="12"/>
+                            <line x1="6" y1="18" x2="18" y2="18"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3>Database Architecture</h3>
+                        <p>Pemrosesan data tanpa henti (Zero-Downtime). Mulai dari relasional hingga NoSQL, kami merancang kluster basis data terenkripsi end-to-end yang mengoptimalkan query mili-detik untuk aplikasi berskala besar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO / CASE STUDIES -->
+    <section id="portfolio" class="portfolio reveal">
+        <div class="container">
+            <h2 class="section-title">Studi Kasus</h2>
+            <p class="section-subtitle">Bagaimana arsitektur Zeta menyelesaikan masalah infrastruktur yang kompleks di dunia nyata.</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <span class="portfolio-tag">High Availability</span>
+                    <h3>Proyek Alpha: E-Commerce X</h3>
+                    <p>Menyelamatkan platform e-commerce dari crash berulang saat momen Flash Sale. Kami merestrukturisasi keseluruhan topologi web server dan mengimplementasikan sistem caching multi-layer yang menstabilkan beban server.</p>
+                </div>
+                <div class="portfolio-card">
+                    <span class="portfolio-tag">Data Security & Migration</span>
+                    <h3>Proyek Beta: Institusi Keuangan</h3>
+                    <p>Migrasi basis data masif untuk institusi perbankan tanpa downtime (zero downtime migration). Dilakukan dengan arsitektur jaringan tertutup (private VPC) untuk memastikan integritas dan kerahasiaan data nasabah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM SECTION -->
+    <section id="team" class="container reveal">
+        <span class="pill" style="display:block; width:fit-content; margin: 0 auto 1.5rem auto;">Zeta Engineers</span>
+        <h2 class="section-title">Pilar Operasional Zeta</h2>
+        <p class="section-subtitle">Para engineer yang memastikan infrastruktur Anda tetap hidup dan bernapas setiap detiknya.</p>
+        
+        <div class="team-grid">
+            <!-- Member 1 -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                        <rect x="3" y="12" width="18" height="8" rx="2"/>
+                        <path d="M9 16h6"/>
+                    </svg>
+                </div>
+                <div class="team-role">Server Architect</div>
+                <h3>Muhammad Farhan</h3>
+                <p>Arsitek utama di balik ketahanan server Zeta. Sangat ahli dalam optimalisasi kernel Linux, Nginx/Apache tuning, dan penerapan strategi auto-scaling yang efisien.</p>
+            </div>
+            <!-- Member 2 -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 16v-2m-2 2h4"/>
+                    </svg>
+                </div>
+                <div class="team-role">Network Security</div>
+                <h3>Firman Farel Richardo</h3>
+                <p>Mata elang yang mengawasi seluruh lalu lintas jaringan global Zeta. Berpengalaman dalam mitigasi ancaman cyber, BGP routing, dan pemeliharaan zona DNS enterprise.</p>
+            </div>
+            <!-- Member 3 -->
+            <div class="team-card">
+                <div class="team-avatar">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                        <path d="M3 5v14a9 3 0 0 0 18 0V5"/>
+                        <path d="M3 12a9 3 0 0 0 18 0"/>
+                        <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="team-role">Database Engineer</div>
+                <h3>Arza Restu Arjuna</h3>
+                <p>Penjaga gerbang data perusahaan. Ahli dalam merancang skema relasional yang kompleks menjadi sistem yang secepat kilat menggunakan PostgreSQL dan sistem NoSQL.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial reveal">
+        <div class="quote-icon">"</div>
+        <div class="container">
+            <p class="testimonial-text">Zeta bukan sekadar vendor server, mereka adalah pondasi dari semua produk digital kami. Infrastruktur tak kasat mata yang mereka bangun memungkinkan tim kami tidur nyenyak di malam hari tanpa khawatir server down.</p>
+            <p class="testimonial-author">— CTO, NexaCorp Enterprise</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="container reveal">
+        <h2 class="section-title">Inisiasi Komunikasi</h2>
+        <p class="section-subtitle">Siap meningkatkan skalabilitas infrastruktur Anda? Hubungi arsitek kami sekarang.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="info-item">
+                    <h4>NOC & Support (24/7)</h4>
+                    <p>sysadmin@zeta.tech</p>
+                </div>
+                <div class="info-item">
+                    <h4>Direct Line</h4>
+                    <p>+62 800 1122 3344</p>
+                </div>
+                <div class="info-item">
+                    <h4>Headquarters</h4>
+                    <p>Cyber Tower, Lantai 42<br>SCBD, Jakarta Selatan<br>Indonesia 12190</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Perusahaan</label>
+                        <input type="email" id="email" class="form-control" placeholder="john@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Fokus Kebutuhan</label>
+                        <select id="service" class="form-control">
+                            <option value="server">Web Server Management</option>
+                            <option value="dns">DNS & Networking</option>
+                            <option value="database">Database Architecture</option>
+                            <option value="all">Infrastruktur Penuh (Full Stack)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Deskripsi Proyek</label>
+                        <textarea id="message" class="form-control" placeholder="Jelaskan skala lalu lintas dan kendala saat ini..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Permintaan</button>
+                </form>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <h4>NOC & Support (24/7)</h4>
+                    <p>sysadmin@zeta.tech</p>
+                </div>
+                <div class="info-item">
+                    <h4>Direct Line</h4>
+                    <p>+62 800 1122 3344</p>
+                </div>
+                <div class="info-item">
+                    <h4>Headquarters</h4>
+                    <p>Cyber Tower, Lantai 42<br>SCBD, Jakarta Selatan<br>Indonesia 12190</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Zeta Tech Infrastructure. All rights reserved.</p>
+            <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">System Status</a>
+        </div>
+    </div>
+</footer>
+
+<!-- JAVASCRIPT INTERAKTIF -->
+<script>
+    // 1. Mobile Menu Toggle (Fungsi Buka/Tutup Menu di HP)
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const bars = document.querySelectorAll('.bar');
+
+    mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Animasi ikon hamburger menjadi tanda silang (X)
+        bars[0].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(-5px, 6px)' : 'none';
+        bars[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+        bars[2].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(-5px, -6px)' : 'none';
+    });
+
+    // Tutup menu otomatis saat link ditekan (di HP)
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+        });
+    });
+
+    // 2. Navbar Scroll Effect (Navbar mengecil dan background lebih pekat saat scroll)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.05)';
+            navbar.style.padding = '1rem 0';
+        } else {
+            navbar.style.background = 'var(--bg-glass)';
+            navbar.style.boxShadow = 'none';
+            navbar.style.padding = '1.5rem 0';
+        }
+    });
+
+    // 3. Scroll Reveal Animations & Number Counter (Animasi muncul dan hitung angka)
+    const reveals = document.querySelectorAll('.reveal');
+    const counters = document.querySelectorAll('.counter');
+    let hasCounted = false;
+
+    // Intersection Observer untuk mendeteksi kapan elemen masuk ke layar
+    const revealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                // Tambahkan kelas active untuk mentrigger CSS Transition
+                entry.target.classList.add('active');
+                
+                // Jika yang muncul adalah bagian Stats, jalankan hitungan angka
+                if (entry.target.classList.contains('stats') && !hasCounted) {
+                    counters.forEach(counter => {
+                        const updateCount = () => {
+                            const target = +counter.getAttribute('data-target');
+                            const suffix = counter.getAttribute('data-suffix');
+                            const count = +counter.innerText.replace(/[^0-9.]/g, '');
+                            
+                            const isFloat = target % 1 !== 0; // Cek apakah ada desimal
+                            const inc = target / 50; // Kecepatan hitungan
+
+                            if (count < target) {
+                                let nextVal = count + inc;
+                                counter.innerText = (isFloat ? nextVal.toFixed(2) : Math.ceil(nextVal)) + suffix;
+                                setTimeout(updateCount, 30);
+                            } else {
+                                counter.innerText = target + suffix;
+                            }
+                        };
+                        updateCount();
+                    });
+                    hasCounted = true; // Supaya animasi angka hanya jalan 1x
+                }
+                // Stop memantau elemen ini karena sudah muncul
+                observer.unobserve(entry.target);
+            }
+        });
+    }, revealOptions);
+
+    reveals.forEach(reveal => {
+        revealOnScroll.observe(reveal);
+    });
+
+    // 4. Form Submission Simulation (Mencegah reload dan memberi efek tombol sukses)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Mencegah halaman ke-refresh
+        const btn = form.querySelector('button');
+        const originalText = btn.innerText;
+        
+        btn.innerText = 'Mengirim...';
+        btn.style.opacity = '0.7';
+        btn.style.pointerEvents = 'none'; // Cegah klik berulang
+        
+        // Simulasi proses loading (1.5 detik)
+        setTimeout(() => {
+            btn.innerText = 'Pesan Terkirim!';
+            btn.style.backgroundColor = '#10b981'; // Ubah warna ke hijau Emerald
+            btn.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.4)';
+            form.reset(); // Kosongkan isi form
+            
+            // Kembalikan tombol ke kondisi semula setelah 3 detik
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = ''; // Mengembalikan ke warna CSS asli
+                btn.style.boxShadow = '';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }, 3000);
+        }, 1500);
+    });
+</script>
+</body>
+</html>

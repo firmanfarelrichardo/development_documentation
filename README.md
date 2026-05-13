@@ -8,7 +8,7 @@ Di dalam repository ini terdapat implementasi deployment server, konfigurasi lay
 
 # 📚 Daftar Tugas
 
-## 🖥️ Tugas 1 — Deployment & Konfigurasi Server
+## 🖥️ Tugas 1 — Arsitektur DNS (VestaCP), Web, dan Database menggunakan Tailscale
 
 [![Tugas 1](https://img.youtube.com/vi/WtEJ1XXCuhk/maxresdefault.jpg)](https://youtu.be/WtEJ1XXCuhk)
 
@@ -17,7 +17,7 @@ https://youtu.be/WtEJ1XXCuhk
 
 ---
 
-## 🌐 Tugas 2 — Implementasi Infrastruktur & Networking
+## 🌐 Tugas 2 — Konfigurasi DNS Zone dan Pengujian menggunakan DIG/NSLOOKUP
 
 [![Tugas 2](https://img.youtube.com/vi/xowUBhMhkZs/maxresdefault.jpg)](https://youtu.be/xowUBhMhkZs)
 
@@ -26,44 +26,26 @@ https://youtu.be/xowUBhMhkZs
 
 ---
 
-## ⚙️ Tugas 3 — Demonstrasi cPanel & Website Statis
+## ⚙️ Tugas 3 — Demonstrasi Akses cPanel dan Deploy Website Statis
 
-📌 Video akan segera ditambahkan.
+[![Tugas 3](https://img.youtube.com/vi/THk_4-osNQg/maxresdefault.jpg)](https://youtu.be/THk_4-osNQg)
 
----
-
-# 🛠️ Teknologi yang Digunakan
-
-- Ubuntu Server
-- Linux
-- Docker
-- VPS
-- cPanel / Control Panel
-- Apache / Nginx
-- HTML, CSS, JavaScript
-- Networking & Virtualization
+🎥 Link Video:  
+https://youtu.be/THk_4-osNQg
 
 ---
 
 # 👥 Tim / Kelompok
 
-- Firman Farel Richardo
-- Anggota Tim
-- Anggota Tim
+- Firman Farel Richardo (2315061099)
+- Muhammad Farhan (2315061083)
+- Arza Restu Arjuna (2315061051)
 
 ---
 
 # 📌 Tujuan Repository
 
 Repository ini dibuat sebagai media dokumentasi proses pembelajaran dan implementasi teknologi cloud computing, server management, deployment, serta virtualisasi dalam lingkungan nyata.
-
----
-
-# 🔗 Playlist / Channel Youtube
-
-📺 Kumpulan video dokumentasi tugas dapat dilihat melalui channel YouTube berikut:
-
-https://www.youtube.com/
 
 ---
 
